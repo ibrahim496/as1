@@ -155,16 +155,73 @@ if($pdoQuery_run){
 					</section>
 
 					<section class="reviews">
-					
-<?php include ('review.php') ;
+				<h1>Review</h1>	
+<?php 
+
+require 'connection.php';
+	
+$pdoQuery = "SELECT firstname, surname, email , userid, messages FROM reviews";
+$pdoQuery_run = $pdo->query($pdoQuery);
+if($pdoQuery_run){
+   
+    while($row = $pdoQuery_run->fetch(PDO::FETCH_OBJ)){
+		    echo ' 
+    <main>
+		<h2>'.$row->messages.'</h2>
+				<h3>'.$row->email.'</h3>
+				<p>'.$row->surname.'</p>
+
+	
+	 </main>
+	
+					</article>
+                    </li>
+           </tr>'
+		   ;
+		      }
+}else{
+    echo "it is empty";
+
+}
+    
+  
 ?>
 
 						</ul>
+						<?php
+require 'connection.php';
 
-						<form>
-							<label>Add your review</label> <textarea name="reviewtext"></textarea>
 
-							<input type="submit" name="submit" value="Add Review" />
+
+
+
+if (isset($_POST['submit'])) {
+$stmt = $pdo->prepare('INSERT INTO reviews(firstname, surname, email, userid, messages) 
+VALUES (:firstname, :surname, :email, :userid, :messages)');
+$values = ['firstname' => $_POST['firstname'],  'surname' => $_POST['surname'],  'email' => $_POST['email'],  'userid' => $_POST['userid'],   'messages' => $_POST['messages']];
+$stmt->execute($values);
+
+	 
+
+  
+
+}else {
+    
+}
+?>
+
+					   <h3>clcik on the link to write a review </h3>
+                
+                <a href="review.php">review page</a>	
+									
+				<form action="index.php" method="POST">
+					<label>firstname</label> <input type="text" name= "firstname" />
+					<label>surname</label> <input type="text" name= "surname" />
+					<label>email</label> <input type="text" name= "email" />
+					<label>userid</label> <input type="text" name= "userid" />
+					<label>messages</label> <input type="text" name= "messages" />
+					<input type="submit" name="submit" value="Submit" />
+				</form>
 						</form>
 					</section>
 					</article>

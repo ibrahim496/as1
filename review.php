@@ -1,20 +1,38 @@
 <?php
-
-require 'connection.php';
-
-$messageQuery = $pdo->prepare('SELECT * from messages');
-$userQuery = $pdo->prepare('SELECT * FROM reviews WHERE id = :id');
-$messageQuery->execute();echo '<ul>';
-foreach ($messageQuery as $message) {
-    $values = ['id' => $message['userId']
-];
-$userQuery->execute($values);
-$user = $userQuery->fetch();
-echo '<li>' .$user['firstname'] . ' ' . $user['surname'] .
-
-' on ' . $message['date']
- . '</li>';
-}
-echo '</ul>';
+session_start();
 
 ?>
+
+
+<?php
+require 'head.php'
+?>
+
+<?php
+require 'connection.php';
+
+if (isset($_POST['submit'])) {
+$stmt = $pdo->prepare('INSERT INTO reviews(firstname, surname, email, userid, messages) 
+VALUES (:firstname, :surname, :email, :userid, :messages)');
+$values = ['firstname' => $_POST['firstname'],  'surname' => $_POST['surname'],  'email' => $_POST['email'],  'userid' => $_POST['userid'],   'messages' => $_POST['messages']];
+$stmt->execute($values);
+  
+
+?>
+<?php
+}
+?>
+<h1>Register</h1>
+				<form action="review.php" method="POST">
+					<label>firstname</label> <input type="text" name= "firstname" />
+					<label>surname</label> <input type="text" name= "surname" />
+					<label>email</label> <input type="text" name= "email" />
+					<label>userid</label> <input type="text" name= "userid" />
+					<label>messages</label> <input type="text" name= "messages" />
+					<input type="submit" name="submit" value="Submit" />
+				</form>
+</form>
+<main>
+        <a href="index.php">home page</a>
+</main>
+
