@@ -27,7 +27,7 @@ if ($stmt->rowCount() > 0)
     echo 'You are now logged in';
 
 	  echo '<a href=”index.php”/>Go to home page</p>';
-	  echo '< href="addAdmin.php"/> add an admin</p>';
+	
 
 	  echo'<a href=”logout.php”/>logout</p>';
 

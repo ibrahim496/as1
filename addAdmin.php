@@ -25,6 +25,7 @@ $stmt->execute($values);
 
 
 ?>
+<h1>Register an admin </h1>
 <form action="addAdmin.php" method="POST">
 <label>adminid:</label><input type="text" name="adminid" id=adminid/>
 <label>Password:</label><input type="password" name="password" id="password" />
