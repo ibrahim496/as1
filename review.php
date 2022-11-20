@@ -1,8 +1,6 @@
-
 <?php
 
 require 'connection.php';
-
 
 $messageQuery = $pdo->prepare('SELECT * from messages');
 $userQuery = $pdo->prepare('SELECT * FROM reviews WHERE id = :id');
@@ -18,6 +16,5 @@ echo '<li>' .$user['firstname'] . ' ' . $user['surname'] .
  . '</li>';
 }
 echo '</ul>';
-echo $user;
 
 ?>

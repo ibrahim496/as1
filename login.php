@@ -57,5 +57,8 @@ if ($stmt->rowCount() > 0)
 			
 		</main>
 <?php
+ 
+?>
+<?php
 require 'footer.php';
 ?>

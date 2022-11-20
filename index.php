@@ -1,5 +1,6 @@
 <?php
     session_start();
+
     ?>
 <!DOCTYPE html>
 <html>
@@ -46,10 +47,57 @@
 		
 			<ul class="productList">
 
+	<?php
+	require 'connection.php';
 	
+$pdoQuery = "SELECT title, discriptions, auctionid, enddate, bid FROM auction";
+$pdoQuery_run = $pdo->query($pdoQuery);
+
+if($pdoQuery_run){
+   
+    while($row = $pdoQuery_run->fetch(PDO::FETCH_OBJ))
+    {
+    echo ' 
+    <tr>
+    <ul class="productList">
+    <li>
+            <img src="product.png" alt="product name">
+			<article>
+		<h2>'.$row->title.'</h2>
+				<h3>'.$row->auctionid.'</h3>
+				<p>'.$row->discriptions.'</p>
+
+						<p>'.$row->enddate.'</p>
+                        <p class="price">Current bid: '.$row->bid.'</p>			<a href="#" class="more auctionLink">More &gt;&gt;</a>
+					</article>
+                    </li>
+           </tr>';
+    }
+}else{
+    echo "it is empty";
+
+}
+
+  
+?>
+
+<article>
+				
+
+					
+	<a href="#" class="more auctionLink">More &gt;&gt;</a>
+		</article>
+                    </li>   </tr>
+		
+    
+	
+
 				<li>
 					<img src="product.png" alt="product name">
 					<article>
+					
+
+				
 						<h2>Product name</h2>
 						<h3>Product category</h3>
 						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sodales ornare purus, non laoreet dolor sagittis id. Vestibulum lobortis laoreet nibh, eu luctus purus volutpat sit amet. Proin nec iaculis nulla. Vivamus nec tempus quam, sed dapibus massa. Etiam metus nunc, cursus vitae ex nec, scelerisque dapibus eros. Donec ac diam a ipsum accumsan aliquet non quis orci. Etiam in sapien non erat dapibus rhoncus porta at lorem. Suspendisse est urna, egestas ut purus quis, facilisis porta tellus. Pellentesque luctus dolor ut quam luctus, nec porttitor risus dictum. Aliquam sed arcu vehicula, tempor velit consectetur, feugiat mauris. Sed non pellentesque quam. Integer in tempus enim.</p>
@@ -108,8 +156,7 @@
 
 					<section class="reviews">
 					
-					<?php
-require 'review.php';
+<?php include ('review.php') ;
 ?>
 
 						</ul>
