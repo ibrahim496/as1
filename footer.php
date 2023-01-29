@@ -1,3 +1,3 @@
 	<footer>
-				&copy; ibuy 2019
+				&copy; ibuy 2022
 			</footer>

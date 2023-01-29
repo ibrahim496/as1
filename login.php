@@ -25,8 +25,7 @@ $stmt->execute($values);
 if ($stmt->rowCount() > 0) 
 {$_SESSION['loggedin'] = true;
     echo 'You are now logged in';
-
-	  echo '<a href=”index.php”/>Go to home page</p>';
+        header('Location: addAuction.php');
 	
 
 	  echo'<a href=”logout.php”/>logout</p>';
@@ -42,7 +41,7 @@ if ($stmt->rowCount() > 0)
 		
 				<h2>User Log In</h2>
                 <a href="login.php">login</a>
-				<form action="login.php" method="POST">
+				<form action="user_index.php" method="POST">
 					<label>Email</label> <input type="text" name= "email" id= "email" />
 					<label>Password</label> <input type="password" name= "password" />
 					<input type="submit" name="submit" value="Submit" />

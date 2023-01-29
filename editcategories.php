@@ -11,35 +11,40 @@ require 'connection.php';
 
 
 if (isset($_POST['submit'])) {
-	$stmt = $pdo->prepare('UPDATE auction
-						   SET  discriptions = :discriptions, enddate = :enddate, columnid =:columnid
-						   WHERE title= :title');
- 
-	$values = [
-		'discriptions' => $_POST['discriptions'],
-		'enddate' => $_POST['enddate'],
-		'columnid' => $_POST['columnid'],
-        'title' => $_POST['title'],
-	];
-    	$stmt->execute($values);
-	echo 'categories ' . $_POST['discriptions'] . ' edited';
-}
-else if (isset($_GET['title'])) {
+		$stmt = $pdo->prepare('UPDATE categories SET Name = :Name WHERE id = :id ');
 
-	$gameStmt = $pdo->prepare('SELECT * FROM auction WHERE title = :title');
-
-	$values = [
-		'title' => $_GET['title']
+	$criteria = [
+		'Name' => $_POST['Name'],
+		'id' => $_POST['id']
 	];
 
-	$gameStmt->execute($values);
+	$stmt->execute($criteria);
+	echo 'Category Saved';
+	echo ' <button><a href="admin_index.php"/> admin page</p></button>';
+} else {
+	$currentCategory = $pdo->query('SELECT * FROM categories WHERE id = ' . $_GET['id'])->fetch();
+	?>
 
-	$game = $gameStmt->fetch();
-}
-?>
 
-<form action="editcategories.php" method="POST">
-	<input type="hidden" name="title" value="<?php echo $game['title']; ?>"/>
+			
 
-	<label> name:</label>
-	<input type="text" name="name"  value="<?php echo $game['name']; ?>" />
+
+
+				<h2>Edit Category</h2>
+
+				<form action="" method="POST">
+
+					<input type="hidden" name="id" value="<?php echo $currentCategory['id']; ?>" />
+					<label>Name</label>
+					<input type="text" name="Name" value="<?php echo $currentCategory['Name']; ?>" />
+
+
+					<input type="submit" name="submit" value="Save Category" />
+
+				</form>
+
+	<?php
+
+
+		}
+	?>

@@ -41,20 +41,11 @@ if ($stmt->rowCount() > 0)
 ?>
 			
 				
-				<form action="adminlogin.php" method="POST">
+				<form action="admin_index.php" method="POST">
 					<label>adminid</label> <input type="text" name= "adminid" />
 					<label>Password</label> <input type="password" name= "password" />
 					<input type="submit" name="submit" value="Submit" />
 				</form>
-
-                <h3>auction page</h3>
-                
-                <a href="addAuction.php">auction page</a>
-
-
-			     <h3>home page </h3>
-                
-                <a href="index.php">home page</a>
 
 		</main>
         <?php
