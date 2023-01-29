@@ -27,6 +27,7 @@
         </form>
     </section>
     <section class="description">
+        ---
         <p>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sodales ornare purus, non laoreet dolor sagittis
             id. Vestibulum lobortis laoreet nibh, eu luctus purus volutpat sit amet. Proin nec iaculis nulla. Vivamus
